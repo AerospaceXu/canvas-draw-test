@@ -30,11 +30,11 @@ function startTouch(e) {
   canPaint = true;
   lastX = e.touches[0].clientX;
   lastY = e.touches[0].clientY;
+  canvas.addEventListener('touchend', endTouch);
   canvas.addEventListener('touchmove', moveTouch);
 }
 
 function moveTouch(e) {
-  canvas.addEventListener('touchend', endTouch);
   if (canPaint === true) {
     drawLine(
       lastX,
@@ -47,7 +47,7 @@ function moveTouch(e) {
   }
 }
 
-function endTouch(e) {
+function endTouch() {
   canPaint = false;
   canvas.removeEventListener('touchmove', moveTouch);
   canvas.removeEventListener('touchend', endTouch);
